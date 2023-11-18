@@ -1,10 +1,11 @@
 //Home page which allows searching for a product
 
 "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useRouter } from 'next/navigation'
+ 
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,13 +27,14 @@ const formSchema = z.object({
 });
 
 export function TopBar() {
-  // ...
+  const router = useRouter()
+
   const form = useForm({
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = (values: any) => {
-    console.log(values);
+    router.push(`/search?q=${values.query}`)
   };
   // center the div on the page
   return (
