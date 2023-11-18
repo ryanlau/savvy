@@ -21,7 +21,8 @@
     "react-dom": "^18",
     "request": "^2.88.2",
     "tailwind-merge": "^2.0.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "web-auth-library": "^1.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",
