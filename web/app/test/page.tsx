@@ -7,18 +7,12 @@ import RightSidebar from '@/savvy-components/body/RightSideBar';
 
 const App = () => {
   return (
-    <div className="justify-end items-stretch flex flex-col">
+    <div className="h-screen flex flex-col w-full">
       <TopBar />
-      <div className="w-full max-md:max-w-full">
-        <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+      <div className="grow flex justify-between">
           <LeftSidebar/>
-          <div className='flex w-full'>
-
-          
-            <Recommendations />
-            <RightSidebar />
-          </div>
-        </div>
+          <Recommendations />
+          <RightSidebar />
       </div>
     </div>
   );

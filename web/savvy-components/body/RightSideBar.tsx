@@ -1,47 +1,38 @@
-import React, { useState } from 'react';
+'use client'
+
+import { useChat } from 'ai/react';
 
 const Chat: React.FC = () => {
-  const [messages, setMessages] = useState([
-    { id: 1, text: "hello how can i help" },
-    { id: 2, text: "yes umm under 500 pls thx" },
-    { id: 3, text: "ok np here you go" },
-    // ... other initial messages
-  ]);
-
-  const [newMessage, setNewMessage] = useState('');
-
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== '') {
-      const nextMessages = [...messages, { id: messages.length + 1, text: newMessage }];
-      setMessages(nextMessages);
-      setNewMessage('');
-    }
-  };
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
 
   return (
-    <div className="max-w-1/3 h-screen flex flex-col bg-black">
+    <div className="w-[350px] max-w-[350px] flex flex-col bg-black">
       <div className="flex-grow overflow-auto">
-        {messages.map((message) => (
-          <div key={message.id} className="bg-white p-2 my-2 mx-4 rounded shadow">
-            {message.text}
+        {messages.map((m) => (
+          <div key={m.id} className="bg-white p-2 my-2 mx-4 rounded shadow">
+            {m.content}
           </div>
         ))}
       </div>
       <div className="mb-4 mx-4">
+        <form onSubmit={handleSubmit}>
+
         <input
           type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
+          value={input}
+          onChange={handleInputChange}
           className="border p-2 w-full rounded"
           placeholder="Type your message here"
-          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
         />
-        <button
-          onClick={handleSendMessage}
+        {/* <button
+          type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded mt-2 shadow"
         >
           Send
-        </button>
+        </button> */}
+
+        </form>
+
       </div>
     </div>
   );

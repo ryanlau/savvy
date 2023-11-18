@@ -33,11 +33,12 @@ export function TopBar() {
   };
 
   return (
-    <div className="bg-black px-3 py-3">
+    <div className="flex bg-gray-700 py-6">
 
+    <div className="w-[350px]"></div>
     
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 grow">
         <FormField
           control={form.control}
           name="query"
@@ -58,6 +59,9 @@ export function TopBar() {
         />
       </form>
     </Form>
+
+
+    <div className="w-[350px]"></div>
     </div>
   );
 }
