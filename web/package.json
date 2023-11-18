@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google-ai/generativelanguage": "^0.2.1",
+    "ai": "^2.2.24",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "google-auth-library": "^8.9.0",
+    "langchain": "^0.0.192",
     "lucide-react": "^0.292.0",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "request": "^2.88.2",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7"
   },
