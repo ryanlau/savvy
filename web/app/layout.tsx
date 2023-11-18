@@ -22,7 +22,6 @@ export default function RootLayout({
       <body
         className={inter.className}
       >
-        Impact-Site-Verification: cf83c462-89ae-4b81-b072-af4bef28c516
         {children}
         </body>
     </html>
