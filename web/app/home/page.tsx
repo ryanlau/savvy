@@ -11,10 +11,8 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -28,7 +26,7 @@ const formSchema = z.object({
 
 export default function HomePage() {
   const router = useRouter()
-  
+
   const form = useForm({
     resolver: zodResolver(formSchema),
   });

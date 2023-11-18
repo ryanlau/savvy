@@ -19,79 +19,8 @@ const formatMessage = (message: VercelChatMessage) => {
 
 const examples = [
   {
-    input: new HumanMessage(`Shopper Query: Which TV is best for me under $500?
-
-List of options: [{
-"name": "Sony 65” Class BRAVIA XR A90J 4K HDR OLED TV Smart Google TV XR65A90J (New)",
-            "salePrice": 1398,
-            "shortDescription": "Introducing Sony’s best-ever OLED TV, with awe-inspiring contrast and our brightest-ever OLED picture. The BRAVIA XR A90J OLED TV, powered by the all-new Cognitive Processor XR, features next-generation technologies that redefine the viewing experience. Engineered for beauty inside and out, the A90J brings a premium, minimalist-inspired design that fits even the most sophisticated of aesthetics. Enjoy breathtaking contrast on our best ever OLED with picture quality that feels deep, natural, and real. Its revolutionary processor uses human perspective analysis to cross-analyze and optimize hundreds of thousands of elements in a blink of an eye. Paired with our unique OLED panel, this technology delivers pure blacks and our brightest ever picture."},
-{"name": "SAMSUNG 65\" Class TU690T Crystal UHD 4K Smart Television - UN65TU690TFXZA",
-            "salePrice": 398,
-            "shortDescription": "See how the 65\" Class TU690T Crystal UHD 4K Smart TV powered by Tizen elevates what you watch—at a value you'll love. Go beyond HDTV to enjoy your content in 4K resolution, and in PurColor. And with Smart TV powered by Tizen built in, it's easy to find and stream the latest shows and movies in just a few clicks."},
-{"name": "SAMSUNG 55\" Class TU690T Crystal UHD 4K Smart Television - UN55TU690TFXZA (New)",
-            "salePrice": 298,
-            "shortDescription": "See how the 55\" Class TU690T Crystal UHD 4K Smart TV powered by Tizen elevates what you watch—at a value you'll love. Go beyond HDTV to enjoy your content in 4K resolution, and in PurColor. And with Smart TV powered by Tizen built in, it's easy to find and stream the latest shows and movies in just a few clicks. Stream your favorite shows. Play games. Work out with a trainer. Do all you enjoy with Smart TV Powered by Tizen. Discover your must-have apps and streaming services all just a few clicks away. Upgrade your entertainment with this SAMSUNG 55\" Class TU690T Crystal UHD 4K Smart Television."}]`),
-    output: new AIMessage(`[
-      {
-          "name": "Sony 65” Class BRAVIA XR A90J 4K HDR OLED TV Smart Google TV XR65A90J (New)",
-          "topFeatures": "OLED picture, Cognitive Processor XR, optimal contrast, bright display",
-          "rating": 40,
-          "comment": "Excellent quality but exceeds budget constraints"
-      },
-      {
-          "name": "SAMSUNG 65" Class TU690T Crystal UHD 4K Smart Television - UN65TU690TFXZA",
-          "topFeatures": "4K resolution, PurColor, Smart TV features, budget-friendly",
-          "rating": 90,
-          "comment": "Great match for budget and features"
-      },
-      {
-          "name": "SAMSUNG 55" Class TU690T Crystal UHD 4K Smart Television - UN55TU690TFXZA (New)",
-          "topFeatures": "4K resolution, Tizen OS, PurColor, excellent value for price",
-          "rating": 95,
-          "comment": "Superb choice for budget and 4K experience"
-      }
-  ]`)
-  },
-  {
-    input: new HumanMessage (`Shopper Query: "I need an affordable, multifunctional printer for home use. Preferably under $100."
-
-    List of Options: [
-        {
-            "name": "HP DeskJet 2755e Wireless All-in-One Printer",
-            "salePrice": 74.99,
-            "shortDescription": "The HP DeskJet 2755e offers versatile printing for your whole family. Easily print, scan, and copy everyday documents from your smartphone using HP Smart app. This wireless printer also comes with a 6-month free trial of Instant Ink, which HP ships to you automatically."
-        },
-        {
-            "name": "Canon PIXMA MG3620 Wireless All-In-One Color Inkjet Printer",
-            "salePrice": 59.99,
-            "shortDescription": "The Canon PIXMA MG3620 is a Wireless Inkjet All-In-One printer that offers convenience and simplicity for all your printing needs. Print and scan from almost anywhere around the house with its wireless capability. Save time and money with great features such as Auto duplex printing and Mobile Device Printing."
-        },
-        {
-            "name": "Epson EcoTank ET-2760 Wireless Color All-in-One Cartridge-Free Supertank Printer",
-            "salePrice": 299.99,
-            "shortDescription": "The EcoTank ET-2760 offers Cartridge-Free Printing with easy-to-fill, supersized ink tanks. You get up to 2 years of ink with each included or replacement ink set. Plus, save up to 90 percent with low-cost replacement ink bottles compared to ink cartridges."
-        }
-    ]`),
-    output: new AIMessage (`[
-      {
-          "name": "HP DeskJet 2755e Wireless All-in-One Printer",
-          "topFeatures": "Wireless printing, scan/copy functions, HP Smart app compatibility, 6-month free trial of Instant Ink",
-          "rating": 92,
-          "comment": "Great value for money, offering versatile functions within your budget."
-      },
-      {
-          "name": "Canon PIXMA MG3620 Wireless All-In-One Color Inkjet Printer",
-          "topFeatures": "Wireless, Auto duplex printing, Mobile Device Printing, simple setup",
-          "rating": 95,
-          "comment": "Excellent affordability with advanced features, perfect for home use."
-      },
-      {
-          "name": "Epson EcoTank ET-2760 Wireless Color All-in-One Cartridge-Free Supertank Printer",
-          "topFeatures": "Cartridge-Free Printing, supersized ink tanks, cost-effective ink replacement, 2 years of ink included",
-          "rating": 60,
-          "comment": "Offers long-term savings but exceeds the specified budget."
-      }
-  ]`)
+    input: new HumanMessage(""),
+    output: new AIMessage("")
   }
 ]
 
@@ -99,32 +28,7 @@ List of options: [{
 
 
 
-const TEMPLATE = `You are an assistant is designed to analyze a list of products and provide recommendations to users based on their specific queries. You are adept at understanding and processing various product attributes like price, features, and descriptions.
-
-Capabilities:
-
-Product Analysis: You can interpret detailed product information, including name, pricing, features, and descriptions.
-Query Understanding: You understand user queries well, and can handle specific filters like "___ under $500", or "with/without {{feature_name}}"
-Rating System: You employ a rating system to score products out of 100, considering how well each product matches the user's requirements. This rating is influenced by factors like how closely the product fits the user's budget and the value it offers for its price.
-Customized Responses: Your responses are in JSON format, providing a structured and machine-readable output. Each response includes the product name, a summary of its top features, a rating score, and a brief comment that contextualizes the score.
-
-Input Format:
-Shopper Query (text): ___?
-List of options (list): [{{
-"name": ___,
-"salePrice":___,
-"shortDescription":___,
-}}]
-
-Output Format (JSON): The response is structured as a JSON array, with each element being an object that contains the following keys:
-
-name: The name of the product.
-topFeatures: A brief description of the product's most notable features. Comma delimited
-rating: A score out of 100, indicating how well the product matches the user's query.
-comment: A explanation or remark that provides context to the rating, highlighting why the product received its particular score. You should pull external data about the product, if necessary to write the best review possible. Justify your rating. Your rating is very important because the shopper takes your word seriously.
-
-Remember to take your time to make sure that the products you are recommending actually meet the user's needs. If they don't just say so.
-
+const TEMPLATE = `
 Current conversation:
 {chat_history}
  
@@ -140,9 +44,40 @@ AI:
  */
 export async function POST(req: NextRequest) {
   const body = await req.json();
+
   const messages = body.messages ?? [];
   const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
   const currentMessageContent = messages[messages.length - 1].content;
+
+  const message = `
+Hisense 100L5G-DLT100B 100-inch 4K Smart Laser TV, Including Hard Screen, with an Additional 1 Year Coverage by Epic Protect (2022)
+$2309
+4.3 stars
+Hisense 100L5G-DLT100B Smart Laser TV - Ultra Short Throw Technology - 100" Laser TV Display - Dolby Atmos Sound - Smart Android TV - 25,000 Hour Life - Smooth Motion - MEMC - Game Mode - ALLM - Filmmaker Mode - 4K - 60Hz Refresh - Ambient Light Rejection - HDR10 - 2700 Lumens Peak Brightness - X-Fusion Laser Engine - Smart Home Ready - 83 Percent DCI-P3 Color Space - 1,000,000:1 Dynamic Contrast Ratio - Blue Laser and Phosphor Color Filter Light Source - 0.25:1 Throw Ratio - App Store - Multiple Streaming Services - Voice Assistant Compatible - Chromecast Screen Mirroring - Wi-Fi - Bluetooth - Ethernet - 3x HDMI - 2x USB - RF - Optical - Analog Audio - Noise Reduction - Parental Controls - Closed Caption - Sleep Timer - Eye Safety - Remote Finder - 30W Stereo Audio - Dolby Digital - eARC/CEC - 150 Degree Viewing Angle - Accessories Included: Remote, Quick Start Guide, Power Cable, Cleaning Kit - Fresnel ALR - 1.0 Gain - Scratch Resistance - Screen Assembly Required - Screen: (88.60"W x 1.20"D x 50.40"H) - Projector: (21.50"W x 13.60"D x 6.20"H) - (Black/Gray) with a 1 Year Coverage by Epic Protect in Addition to the Included Full Manufacturer Warranty. Intended for Residential Use Only
+
+
+LG 70" Class 4K UHD 2160P webOS Smart TV - 70UQ7070ZUD
+$498
+4.4 stars
+Dive into a world of free content and personalized recommendations for everyone you share the remote with. Enhance your picture and sound with AI from the α5 Gen5 AI Processor 4K that is engineered to amaze by transforming your regular content into 4K for sharper definition and detail, even on our biggest screens*. Take binge-watching further by customizing your viewing experience with separate accounts and personalized recommendations for every member of your family with webOS 22. And enjoy binge-worthy streaming with built-in access to Netflix, the Apple TV app, Disney+, HBO Max** and to over 300+ free LG Channels*** with everything from comedy to movies to sports. For gamers, you can make it the best gaming experience by quickly adjusting all your game settings in one location with the LG Game Optimizer and Dashboard. Bring your content to life with LG UHD. See a vivid picture every time with LG UHD’s 4K resolution. *Image quality of upscaled content will vary based on the source resolution. **Internet connection and subscriptions to streaming services are required. HBO Max™ ©2022 Warner Media, LLC. All Rights Reserved. HBO Max is used under license. ***Number of LG Channels subject to change. with. *Number of LG Channels subject to change.
+
+
+Philips 75" Class 4K Ultra HD (2160p) Google Smart LED TV (75PUL7552/F7)
+$628
+4.5 stars
+Watch what you love, control it with your voice. The Philips Google TV brings together movies, shows, live TV and more from across your apps and organizes them just for you. Ask Google to find movies and shows, answer questions, control smart home devices, and more, with your voice. Enjoy the beauty of 4K Ultra HD TV and see more of what the director intended. Find the entertainment you love with help from Google.
+
+
+onn. 70” Class 4K UHD (2160P) LED Roku Smart TV HDR (100012588)
+$428
+4.1 stars
+Binge on movies and TV episodes, news, sports, music and more! We insisted on 4K Ultra High Definition for this 70” LED TV, bringing out more lifelike color, texture and detail than ever before. We also partnered with Roku to bring you the best possible content with thousands of channels to choose from, conveniently presented through your own customizable home screen. Watch via cable, satellite, HDTV antenna or just start streaming from your favorite app. Like the sound of your own voice You can actually use it with the Roku mobile app to search for a title, artist, actor or director, or just go old-school with our handy remote. We handle all software updates too, automatically, so all you have to worry about is what to watch. Lose yourself in the ultimate viewing experience. Watch on with our onn. 4K UHD 70" Smart TV. We're onn. to something here. We took the hassle out of buying electronics and built a brand that's fresh and simple. With delightful pops of color, finding the right product has never been easier. Say goodbye to stressful decision-making and fear of the electronics aisle. Our mission is simple… to deliver great products and make it easy. Choose onn. and get back to using your brainpower for the important things in life like pondering the question, "What should I binge watch this weekend?"
+
+
+Return an array containing JSON objects. For each one of the products given above, return a JSON object that has the fields including the name, rating, and explanation. The name is a string, and is provided for each example. Acceptable values for rating is a number on a scale of 0 to 100, according to how well it fits the user's query. Take into account how many stars others have given it (given on a 0 to 5 scale) into account when computing your rating as well. The explanation is a string explaining the rating you gave, in detail, about what about the product warrants that rating for the user. If you deducted points, what about the product caused you to deducted points. If it has a particularly high score, why? Write about the features that set each tv apart in the explanation. Be sure to respond in English.
+
+
+The user query is: "${currentMessageContent}"`
 
   const prompt = PromptTemplate.fromTemplate(TEMPLATE);
   /**
@@ -151,9 +86,7 @@ export async function POST(req: NextRequest) {
    */
   const model = new ChatGoogleVertexAI({
     temperature: 0.2,
-    examples: examples,
-    
-  
+    //examples: examples,
   });
 
   const outputParser = new BytesOutputParser();
@@ -161,7 +94,7 @@ export async function POST(req: NextRequest) {
 
   const stream = await chain.stream({
     chat_history: formattedPreviousMessages.join('\n'),
-    input: currentMessageContent,
+    input: message,
   });
 
 
