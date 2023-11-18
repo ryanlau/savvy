@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
   
 
   // send a get request to https://developer.api.walmart.com/api-proxy/service/affil/product/v2/search
-  const walmartResponse = await fetch(`https://developer.api.walmart.com/api-proxy/service/affil/product/v2/search?responseGroup=&query=${query}`, {
+  const walmartResponse = await fetch(`https://developer.api.walmart.com/api-proxy/service/affil/product/v2/search?query=${query}`, {
     headers: {
       "WM_SEC.KEY_VERSION": privateKeyVersion,
       "WM_CONSUMER.ID": consumerID,
@@ -34,9 +34,8 @@ export async function GET(request: NextRequest) {
 
   const walmartJson = await walmartResponse.json()
 
+  console.log(walmartJson);
   
-
-
 
   const cleaned: Product[] = []
 
