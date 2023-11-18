@@ -15,9 +15,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 
 const formSchema = z.object({
-  username: z.string().min(2, {
+  query: z.string().min(0, {
     message: "Username must be at least 2 characters.",
   }),
 });
@@ -38,27 +39,26 @@ export function TopBar() {
     <div className="w-[350px]"></div>
     
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 grow">
-        <FormField
-          control={form.control}
-          name="query"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex space-x-8 min-w-[300px] max-w-1/2">
-                <FormControl>
-                  <Input
-                    placeholder="Looking for something else? Start a new shopping trip"
-                    {...field}
-                  />
-                </FormControl>
-                <Button type="submit">Submit</Button>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </form>
-    </Form>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 grow">
+            <FormField
+              control={form.control}
+              name="query"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex space-x-2 min-w-[300px] max-w-1/2">
+                    <FormControl>
+                      <Input placeholder="Looking for something else? Start a new shopping trip" {...field} />
+                    </FormControl>
+                    <Button type="submit">
+                      <Search className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
 
 
     <div className="w-[350px]"></div>
