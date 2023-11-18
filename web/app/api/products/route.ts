@@ -1,5 +1,14 @@
 import { type NextRequest } from 'next/server'
  
+
+type Product = {
+  name: string
+  rating: number
+  description: string
+  price: number
+  img: string
+}
+ 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const query = searchParams.get('query')
@@ -14,7 +23,7 @@ export async function GET(request: NextRequest) {
   
 
   // send a get request to https://developer.api.walmart.com/api-proxy/service/affil/product/v2/search
-  const walmartResponse = await fetch(`https://developer.api.walmart.com/api-proxy/service/affil/product/v2/search?query=${query}`, {
+  const walmartResponse = await fetch(`https://developer.api.walmart.com/api-proxy/service/affil/product/v2/search?responseGroup=&query=${query}`, {
     headers: {
       "WM_SEC.KEY_VERSION": privateKeyVersion,
       "WM_CONSUMER.ID": consumerID,
@@ -25,5 +34,21 @@ export async function GET(request: NextRequest) {
 
   const walmartJson = await walmartResponse.json()
 
-  return Response.json(walmartJson)
+  
+
+
+
+  const cleaned: Product[] = []
+
+  walmartJson.items.forEach((item: any) => {
+    cleaned.push({
+      name: item.name,
+      rating: item.customerRating,
+      description: item.shortDescription,
+      price: item.salePrice,
+      img: item.largeImage,
+    })
+  })
+
+  return Response.json(cleaned)
 }
