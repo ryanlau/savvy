@@ -26,9 +26,9 @@ const formSchema = z.object({
   }),
 });
 
-export function TopBar() {
+export default function HomePage() {
   const router = useRouter()
-
+  
   const form = useForm({
     resolver: zodResolver(formSchema),
   });
@@ -74,5 +74,3 @@ export function TopBar() {
     </div>
   );
 }
-
-export default TopBar;

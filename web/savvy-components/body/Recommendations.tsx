@@ -9,7 +9,7 @@ const recommendations = [
 
 const Recommendations: React.FC = () => {
   return (
-    <div className="w-2/3 mx-auto p-4">
+    <div className="mt-8 max-w-[900px]">
     <ProductList />
     </div>
   );
@@ -25,7 +25,7 @@ interface ProductProps {
 
 const Product: React.FC<ProductProps> = ({ name, topFeatures, rating, comment, isTopProduct }) => {
   return (
-    <div className={`border p-4 ${isTopProduct ? 'bg-gray-200' : 'bg-white'}`}>
+    <div className={`rounded-sm border p-4 ${isTopProduct ? 'bg-gradient-to-b from-gray-200 to-white' : 'bg-white'}`}>
       {isTopProduct && (
         <img src="path_to_top_product_image.jpg" alt={name} className="w-full h-auto mb-4" />
       )}
@@ -65,7 +65,7 @@ const ProductList: React.FC = () => {
   const sortedProducts = [...products].sort((a, b) => b.rating - a.rating);
 
   return (
-    <div>
+    <div className='space-y-4'>
       {sortedProducts.map((product, index) => (
         <Product
           key={index}
