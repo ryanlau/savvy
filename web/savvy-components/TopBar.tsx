@@ -35,7 +35,7 @@ export function TopBar() {
   return (
     <div className="flex bg-gray-900 py-6">
 
-    <div className="w-[350px] pl-5">
+    <div className="w-[350px] pl-20">
 
     <Image
       src="/savvywhite.png"

@@ -113,11 +113,8 @@ export default function Recommendations(props: RecommendationsProps) {
           <AccordionItem value={`item-${index}`}>
             <AccordionTrigger>
               <div
-                className={
-                  index === 0
-                    ? "flex justify-between w-full space-x-4 text-xl"
-                    : "flex justify-between w-full space-x-4"
-                }
+                className="flex justify-between w-full space-x-4"
+              
               >
                 <h1>{product.name}</h1>
                 <div>${product.price}</div>
