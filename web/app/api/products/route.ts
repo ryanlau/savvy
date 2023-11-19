@@ -19,9 +19,6 @@ export async function GET(request: NextRequest) {
   const signatureResponse = await fetch('https://savvy-walmart-signature.onrender.com/')
   const {signature, consumerID, timestamp, privateKeyVersion }  = await signatureResponse.json()
 
-  console.log(signature, consumerID, timestamp, privateKeyVersion);
-  
-
   // send a get request to https://developer.api.walmart.com/api-proxy/service/affil/product/v2/search
   const walmartResponse = await fetch(`https://developer.api.walmart.com/api-proxy/service/affil/product/v2/search?query=${query}`, {
     headers: {
@@ -33,9 +30,6 @@ export async function GET(request: NextRequest) {
   })
 
   const walmartJson = await walmartResponse.json()
-
-  console.log(walmartJson);
-  
 
   const cleaned: Product[] = []
 

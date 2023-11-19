@@ -1,16 +1,31 @@
-import React from 'react';
+'use client'
 
-const recommendations = [
-  {
-    title: "Hello",
-    description: "This is a description"
-  }
-];
+import React, { use, useEffect } from 'react';
+import { useChat } from 'ai/react';
 
-const Recommendations: React.FC = () => {
+interface RecommendationsProps {
+  recommendations: any[];
+}
+
+export default function Recommendations(props: RecommendationsProps) {
+
+
+  const sortedProducts = props.recommendations.sort((a, b) => b.rating - a.rating);
+
   return (
     <div className="mt-8 max-w-[900px]">
-    <ProductList />
+    <div className='space-y-4'>
+      {sortedProducts.map((product, index) => (
+        <Product
+          key={index}
+          name={product.name}
+          topFeatures={product.topFeatures}
+          rating={product.rating}
+          comment={product.comment}
+          isTopProduct={index === 0} // Only the first product is the top product
+        />
+      ))}
+    </div>
     </div>
   );
 };
@@ -60,26 +75,6 @@ const products = [
 ]
 
 
-const ProductList: React.FC = () => {
-  // Sort products by rating
-  const sortedProducts = [...products].sort((a, b) => b.rating - a.rating);
-
-  return (
-    <div className='space-y-4'>
-      {sortedProducts.map((product, index) => (
-        <Product
-          key={index}
-          name={product.name}
-          topFeatures={product.topFeatures}
-          rating={product.rating}
-          comment={product.comment}
-          isTopProduct={index === 0} // Only the first product is the top product
-        />
-      ))}
-    </div>
-  );
-};
-
-export default Recommendations;
-
-
+// const ProductList: React.FC = () => {
+//   // Sort products by rating
+// };

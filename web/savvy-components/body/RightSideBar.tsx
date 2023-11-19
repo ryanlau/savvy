@@ -1,26 +1,30 @@
 'use client'
 
-import { useChat } from 'ai/react';
+interface ChatProps {
+  messages: any;
+  input: string;
+  handleInputChange: any;
+  handleSubmit: any;
+}
 
-const Chat: React.FC = () => {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+export default function Chat(props:ChatProps) {
 
   return (
     <div className="w-[350px] max-w-[350px] flex flex-col bg-black">
       <div className="flex-grow overflow-auto">
-        {messages.map((m) => (
+        {props.messages.map((m: {id: "string", content: "string"}) => (
           <div key={m.id} className="bg-white p-2 my-2 mx-4 rounded shadow">
             {m.content}
           </div>
         ))}
       </div>
       <div className="mb-4 mx-4">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={props.handleSubmit}>
 
         <input
           type="text"
-          value={input}
-          onChange={handleInputChange}
+          value={props.input}
+          onChange={props.handleInputChange}
           className="border p-2 w-full rounded"
           placeholder="Type your message here"
         />
@@ -38,4 +42,3 @@ const Chat: React.FC = () => {
   );
 };
 
-export default Chat;
