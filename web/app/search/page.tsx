@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import TopBar from '@/savvy-components/TopBar';
 import LeftSidebar from '@/savvy-components/body/LeftSideBar';
 import Recommendations from '@/savvy-components/body/Recommendations';
@@ -48,7 +48,7 @@ export default function App() {
       <div className="grow flex justify-between">
           <LeftSidebar/>
           <Recommendations recommendations={recommendations} />
-          <RightSidebar messages={messages} input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
+          <RightSidebar messages={messages} input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} isLoading={isLoading}/>
       </div>
     </div>
   );
