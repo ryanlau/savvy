@@ -1,20 +1,32 @@
 'use client'
 
+import { Progress } from "@/components/ui/progress"
+
+
 interface ChatProps {
   messages: any;
   input: string;
   handleInputChange: any;
   handleSubmit: any;
+  isLoading: boolean;
 }
 
 export default function Chat(props:ChatProps) {
-
+  
   return (
     <div className="w-[350px] max-w-[350px] flex shrink-0 flex-col bg-gray-100">
       <div className="flex-grow h-[100px] min-h-0 overflow-y-auto">
-        {props.messages.map((m: {id: string, content: string, role: string}) => (
+        {props.messages.map((m: {id: string, content: string, role: string}, index: number) => (
           <div key={m.id} className={`${m.role == "user" ? "bg-blue-500 text-white": "bg-white"} p-2 my-2 mx-4 rounded shadow`}>
-            {m.content}
+            {m.role == "user" ? m.content : 
+              props.isLoading && (index == props.messages.length - 1) ?
+              <div>
+                <p>Processing your request...</p>
+                <div>
+                  <Progress value={(m.content.length * 100) / 3000 }/>
+                </div>
+              </div> : <p>Completed your request</p>
+            }
           </div>
         ))}
       </div>

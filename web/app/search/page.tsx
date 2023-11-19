@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import TopBar from '@/savvy-components/TopBar';
 import LeftSidebar from '@/savvy-components/body/LeftSideBar';
 import Recommendations from '@/savvy-components/body/Recommendations';
@@ -11,8 +11,8 @@ import { useSearchParams } from 'next/navigation';
 const App = () => {
   const searchParams = useSearchParams()
   const query = searchParams.get('q')
-  
-  const { messages, input, handleInputChange, handleSubmit } = useChat({onError: (e) => console.log(e), onFinish: (e) => console.log('doe')});
+
+  const { messages, input, handleInputChange, handleSubmit, isLoading} = useChat({onError: (e) => console.log(e), onFinish: (e) => console.log('doe')});
 
   const assistantMessages = messages.filter(m =>  m.role == "assistant")
 
@@ -43,7 +43,7 @@ const App = () => {
       <div className="grow flex justify-between">
           <LeftSidebar/>
           <Recommendations recommendations={recommendations} />
-          <RightSidebar messages={messages} input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
+          <RightSidebar messages={messages} input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} isLoading={isLoading}/>
       </div>
     </div>
   );
