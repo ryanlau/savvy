@@ -34,7 +34,7 @@ const Product: React.FC<ProductProps> = ({
   return (
     <div
       className={`rounded-sm px-4 ${
-        isTopProduct ? "bg-gradient-to-b from-gray-100 to-white" : "bg-white"
+        isTopProduct ? "bg-white" : "bg-white"
       }`}
     >
       <div className="flex w-full">
