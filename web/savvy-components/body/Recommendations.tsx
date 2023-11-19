@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const Recommendations: React.FC = () => {
   return (
@@ -33,23 +34,41 @@ const Product: React.FC<ProductProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-sm border px-4 ${
-        isTopProduct ? "bg-gradient-to-b from-gray-200 to-white" : "bg-white"
+      className={`rounded-sm px-4 ${
+        isTopProduct ? "bg-gradient-to-b from-gray-100 to-white" : "bg-white"
       }`}
     >
       <div className="flex w-full">
-        <img
+        <Image
           src={thumbnail}
           alt={name}
-          className="w-[200px] aspect-square mb-4"
+          width={200}
+          height={200}
+          className="aspect-square mb-4"
         />
+        
         <div className="p-4 w-full">
+          {/* Tags */}
+          {isTopProduct && (
+            <div className="flex space-x-2 mb-2">
+            <div className="bg-gray-900 text-white rounded-lg px-2 py-1 text-sm">
+              Savvy Recommended
+            </div>
+            <div className="bg-gray-500 text-white rounded-lg px-2 py-1 text-sm">
+              Top Product
+            </div>
+            <div className="bg-gray-500 text-white rounded-lg px-2 py-1 text-sm">
+              Best Seller
+            </div>
+          </div>
+            )
+            }
+          
+
           <div className="">
-            <span className="text-xl">Savvy says: "</span>
-            <br />
-            <span className="l-5">{comment}</span>
-            <br />
-            <span className="text-lg">"</span>
+            <p className="text-xl mb-1">Savvy says:</p>
+            <p className="l-5 mb-2">{comment}</p>
+            
           </div>
           <div className="flex justify-between items-end">
             <div>
@@ -62,7 +81,7 @@ const Product: React.FC<ProductProps> = ({
               ))}
             </div>
             <div>
-              <Button>Purchase</Button>
+              <Button className="bg-[#ffc11f]">Purchase</Button>
             </div>
           </div>
         </div>
