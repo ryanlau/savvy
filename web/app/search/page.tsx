@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TopBar from '@/savvy-components/TopBar';
 import LeftSidebar from '@/savvy-components/body/LeftSideBar';
 import Recommendations from '@/savvy-components/body/Recommendations';
@@ -7,20 +7,28 @@ import RightSidebar from '@/savvy-components/body/RightSideBar';
 
 import { useChat } from 'ai/react';
 import { useSearchParams } from 'next/navigation';
+import { set } from 'react-hook-form';
 
 export default function App() {
   const searchParams = useSearchParams()
   const query = searchParams.get('q')
-  
-  const { messages, input, handleInputChange, handleSubmit, append, isLoading} = useChat({onError: (e) => console.log(e), onFinish: (e) => console.log('doe')});
+  const lockRef = useRef(false);
+  const { messages, input, handleInputChange, handleSubmit, append, isLoading } = useChat({
+    onError: (e) => console.log(e),
+    onFinish: (e) => console.log('done')
+  });
 
-  const assistantMessages = messages.filter(m =>  m.role == "assistant")
-
+  const assistantMessages = messages.filter(m => m.role == "assistant");
 
   useEffect(() => {
-    if (isLoading) return
-    if (query) append({id: "asdfasf", content: query, role: "user"})
-  }, [query])
+    if (lockRef.current) return;
+    console.log(lockRef.current);
+    if (query) {
+      lockRef.current = true;
+      append({ id: "asdfasf", content: query, role: "user" });
+    }
+  }, [query]);
+  
 
   let recommendations: any = []
 
@@ -34,12 +42,12 @@ export default function App() {
     if (lastMessage ==  "]") {
       recommendations = []
     } else {
-      console.log(lastMessage)
+      //console.log(lastMessage)
       recommendations = JSON.parse(lastMessage)
     }
   }
 
-  console.log(recommendations);
+  //console.log(recommendations);
 
   return (
     <div className="h-screen max-h-screen flex flex-col w-full">
