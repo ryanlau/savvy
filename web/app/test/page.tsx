@@ -6,8 +6,13 @@ import Recommendations from '@/savvy-components/body/Recommendations';
 import RightSidebar from '@/savvy-components/body/RightSideBar';
 
 import { Message, useChat } from 'ai/react';
+import { useSearchParams } from 'next/navigation'
+
 
 const App = () => {
+  const searchParams = useSearchParams()
+  const query = searchParams.get('q')
+
   const { messages, input, handleInputChange, handleSubmit } = useChat();
 
   const assistantMessages = messages.filter(m =>  m.role == "assistant")

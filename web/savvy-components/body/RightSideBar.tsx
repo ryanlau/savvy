@@ -10,7 +10,7 @@ interface ChatProps {
 export default function Chat(props:ChatProps) {
 
   return (
-    <div className="w-[350px] max-w-[350px] flex flex-col bg-black">
+    <div className="w-[350px] max-w-[350px] flex flex-col bg-gray-100">
       <div className="flex-grow overflow-auto">
         {props.messages.map((m: {id: "string", content: "string"}) => (
           <div key={m.id} className="bg-white p-2 my-2 mx-4 rounded shadow">

@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useRouter } from 'next/navigation'
- 
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -40,9 +40,16 @@ export default function HomePage() {
     <div className="flex justify-center items-center h-screen">
       <div>
         <div className="mb-5">
-          <h1 className="text-3xl font-bold text-center">Savvy</h1>
+          <div className="flex justify-center">
+            <Image
+              src="/savvylogo.png"
+              alt="Savvy logo"
+              width={300}
+              height={300}
+            />
+          </div>
           <p className="text-center text-gray-500">
-            Find the best products for you
+            Finds the best products for you
           </p>
         </div>
         <Form {...form}>
