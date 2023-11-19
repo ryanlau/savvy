@@ -67,16 +67,27 @@ export async function POST(req: NextRequest) {
 
   const model = new ChatGoogleVertexAI({
     temperature: 0.2,
+<<<<<<< HEAD
+||||||| 3670eaa
+    //examples: examples,
+=======
+    //examples: examples,
+    
+>>>>>>> 4b29a979e6c62cbc6f8e9a96540d8baf1c8f8ee4
   });
 
   const outputParser = new BytesOutputParser();
   const chain = prompt.pipe(model).pipe(outputParser);
-
   const stream = await chain.stream({
     chat_history: formattedPreviousMessages.join('\n'),
     input: currentMessageContent,
   });
 
+<<<<<<< HEAD
   // return Response.json({});
+||||||| 3670eaa
+
+=======
+>>>>>>> 4b29a979e6c62cbc6f8e9a96540d8baf1c8f8ee4
   return new StreamingTextResponse(stream);
 }
