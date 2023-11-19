@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
   query: z.string().min(0, {
@@ -28,8 +29,10 @@ export function TopBar() {
     resolver: zodResolver(formSchema),
   });
 
+  const router = useRouter()
+
   const onSubmit = (values: any) => {
-    console.log(values);
+    router.push(`/search?q=${values.query}`)
   };
 
   return (

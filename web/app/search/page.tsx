@@ -6,12 +6,15 @@ import Recommendations from '@/savvy-components/body/Recommendations';
 import RightSidebar from '@/savvy-components/body/RightSideBar';
 
 import { useChat } from 'ai/react';
-import { useSearchParams } from 'next/navigation';
-import { set } from 'react-hook-form';
+import { useRouter, useSearchParams } from 'next/navigation';
+
 
 export default function App() {
   const searchParams = useSearchParams()
   const query = searchParams.get('q')
+  const refresh = searchParams.get('r')
+
+
   const lockRef = useRef(false);
   const { messages, input, handleInputChange, handleSubmit, append, isLoading } = useChat({
     onError: (e) => console.log(e),
@@ -21,8 +24,10 @@ export default function App() {
   const assistantMessages = messages.filter(m => m.role == "assistant");
 
   useEffect(() => {
-    if (lockRef.current) return;
-    console.log(lockRef.current);
+    if (lockRef.current) {
+      lockRef.current = false;
+      return;
+      }
     if (query) {
       lockRef.current = true;
       append({ id: "asdfasf", content: query, role: "user" });
