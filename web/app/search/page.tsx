@@ -1,25 +1,52 @@
 'use client'
-
 import React from 'react';
+import TopBar from '@/savvy-components/TopBar';
+import LeftSidebar from '@/savvy-components/body/LeftSideBar';
+import Recommendations from '@/savvy-components/body/Recommendations';
+import RightSidebar from '@/savvy-components/body/RightSideBar';
 
-interface PageProps {
-  // Define the props for your component here
-}
+import { useChat } from 'ai/react';
+import { useSearchParams } from 'next/navigation';
 
-import { useSearchParams } from 'next/navigation'
-
-const Page: React.FC<PageProps> = () => {
+const App = () => {
   const searchParams = useSearchParams()
- 
-  const search = searchParams.get('q')
+  const query = searchParams.get('q')
+  
+  const { messages, input, handleInputChange, handleSubmit } = useChat({onError: (e) => console.log(e), onFinish: (e) => console.log('doe')});
 
-  // Use the 'q' variable to access the value of the 'q' query parameter
+  const assistantMessages = messages.filter(m =>  m.role == "assistant")
+
+
+
+  let recommendations: any = []
+
+  if (assistantMessages.length == 0) {
+    recommendations = []
+  } else {
+    let lastMessage = assistantMessages.at(-1)!.content;
+    lastMessage = lastMessage.substring(0, lastMessage.lastIndexOf("}") + 1)
+    lastMessage += "]"
+
+    if (lastMessage ==  "]") {
+      recommendations = []
+    } else {
+      console.log(lastMessage)
+      recommendations = JSON.parse(lastMessage)
+    }
+  }
+
+  console.log(recommendations);
 
   return (
-    <div>
-      {search}
+    <div className="h-screen max-h-screen flex flex-col w-full">
+      <TopBar />
+      <div className="grow flex justify-between">
+          <LeftSidebar/>
+          <Recommendations recommendations={recommendations} />
+          <RightSidebar messages={messages} input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
+      </div>
     </div>
   );
 };
 
-export default Page;
+export default App;
