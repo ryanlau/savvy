@@ -102,7 +102,7 @@ export default function Recommendations(props: RecommendationsProps) {
   );
 
   return (
-    <div className="">
+    <div className="w-[800px] mt-6">
       <Accordion type="single" collapsible defaultValue="item-0">
         {sortedProducts.map((product, index) => (
           <AccordionItem value={`item-${index}`}>
