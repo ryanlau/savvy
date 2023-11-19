@@ -87,16 +87,15 @@ The user query is: "${currentMessageContent}"`
   const model = new ChatGoogleVertexAI({
     temperature: 0.2,
     //examples: examples,
+    
   });
 
   const outputParser = new BytesOutputParser();
   const chain = prompt.pipe(model).pipe(outputParser);
-
   const stream = await chain.stream({
     chat_history: formattedPreviousMessages.join('\n'),
     input: message,
   });
-
 
   return new StreamingTextResponse(stream);
 }

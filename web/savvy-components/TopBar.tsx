@@ -3,15 +3,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
+import Image from 'next/image'
+import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -34,9 +33,17 @@ export function TopBar() {
   };
 
   return (
-    <div className="flex bg-gray-700 py-6">
+    <div className="flex bg-gray-900 py-6">
 
-    <div className="w-[350px]"></div>
+    <div className="w-[350px] pl-5">
+
+    <Image
+      src="/savvywhite.png"
+      width={120}
+      height={40}
+      alt="Logo"
+    />
+    </div>
     
     <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 grow">
@@ -49,7 +56,7 @@ export function TopBar() {
                     <FormControl>
                       <Input placeholder="Looking for something else? Start a new shopping trip" {...field} />
                     </FormControl>
-                    <Button type="submit">
+                    <Button type="submit" variant="outline">
                       <Search className="w-4 h-4" />
                     </Button>
                   </div>
@@ -61,7 +68,9 @@ export function TopBar() {
         </Form>
 
 
-    <div className="w-[350px]"></div>
+    <div className="w-[350px] flex items-center justify-end pr-5">
+      <Menu width="25" height="25" color="white"/>
+    </div>
     </div>
   );
 }
