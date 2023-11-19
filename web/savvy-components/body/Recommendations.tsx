@@ -1,4 +1,6 @@
-import React from "react";
+'use client'
+
+import React from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -8,10 +10,30 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-const Recommendations: React.FC = () => {
+interface RecommendationsProps {
+  recommendations: any[];
+}
+
+export default function Recommendations(props: RecommendationsProps) {
+
+
+  const sortedProducts = props.recommendations.sort((a, b) => b.rating - a.rating);
+
   return (
     <div className="mt-8 max-w-[900px]">
-      <ProductList />
+    <div className='space-y-4'>
+      {sortedProducts.map((product, index) => (
+        <Product
+          thumbnail='https://i5.walmartimages.com/asr/fbd8e0f4-8345-49f1-8a08-30f3dd29101f.c2ba42cb0c56424bcd98dbdf2f03033f.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff'
+          key={index}
+          name={product.name}
+          topFeatures={product.topFeatures}
+          rating={product.rating}
+          comment={product.comment}
+          isTopProduct={index === 0} // Only the first product is the top product
+        />
+      ))}
+    </div>
     </div>
   );
 };
@@ -163,4 +185,3 @@ const ProductList: React.FC = () => {
   );
 };
 
-export default Recommendations;
