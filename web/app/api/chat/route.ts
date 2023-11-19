@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
   console.log(prompt)
 
   const model = new ChatGoogleVertexAI({
-    // maxOutputTokens: 10000,
+    maxOutputTokens: 2000,
     temperature: 0.2,
     // model: "text-bison-32k"
     //examples: examples,
