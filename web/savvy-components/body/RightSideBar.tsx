@@ -38,7 +38,7 @@ export default function Chat(props:ChatProps) {
               <div>
                 <p>Processing your request...</p>
                 <div>
-                  <Progress value={(m.content.length * 100) / 3000 }/>
+                  <Progress value={(m.content.length * 100) / 6000 }/>
                 </div>
               </div> : <p>Completed your request</p>
             }
