@@ -21,6 +21,7 @@ export default function App() {
     if (isLoading) return
     if (query) append({id: "asdfasf", content: query, role: "user"})
   }, [query])
+    console.log(query);
 
   let recommendations: any = []
 

@@ -27,5 +27,7 @@ export async function GET(request: NextRequest) {
     Response:`,
   );
 
-  return Response.json({product: res.trim()})
+  const trimmed = res.trim()
+
+  return Response.json({product: trimmed})
 }
