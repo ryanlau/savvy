@@ -49,7 +49,8 @@
 
 export default function LeftSidebar() {
   return (
-    <div className="w-[350px] max-w-[350px] bg-gray-100 flex shrink-0 justify-center items-center">
+    // <div className="w-[350px] max-w-[350px] bg-gray-100 flex shrink-0 justify-center items-center">
+    <div className="w-[350px] max-w-[350px] bg-white text-white flex shrink-0 justify-center items-center">
       <p>Your shopping trips will be saved here</p>
     </div>
   );
