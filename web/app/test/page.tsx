@@ -26,6 +26,7 @@ const App = () => {
     if (lastMessage ==  "]") {
       recommendations = []
     } else {
+      console.log(lastMessage)
       recommendations = JSON.parse(lastMessage)
     }
   }
