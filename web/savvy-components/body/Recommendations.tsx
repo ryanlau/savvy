@@ -90,7 +90,7 @@ const Product: React.FC<ProductProps> = ({
                 ))}
             </div>
             <div>
-              <Link href={`walmart.com/ip/~/${id}`}>
+              <Link href={`https://walmart.com/ip/~/${id}`}>
               <Button className="bg-[#ffc11f]">Purchase</Button>
               </Link>
             </div>
