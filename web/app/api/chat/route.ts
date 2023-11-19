@@ -67,6 +67,7 @@ export async function POST(req: NextRequest) {
 
   const model = new ChatGoogleVertexAI({
     temperature: 0.2,
+    // model: "text-bison-32k"
     //examples: examples,
     
   });
