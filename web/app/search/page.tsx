@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TopBar from '@/savvy-components/TopBar';
 import LeftSidebar from '@/savvy-components/body/LeftSideBar';
 import Recommendations from '@/savvy-components/body/Recommendations';
@@ -8,15 +8,19 @@ import RightSidebar from '@/savvy-components/body/RightSideBar';
 import { useChat } from 'ai/react';
 import { useSearchParams } from 'next/navigation';
 
-const App = () => {
+export default function App() {
   const searchParams = useSearchParams()
   const query = searchParams.get('q')
-
-  const { messages, input, handleInputChange, handleSubmit, isLoading} = useChat({onError: (e) => console.log(e), onFinish: (e) => console.log('doe')});
+  
+  const { messages, input, handleInputChange, handleSubmit, append, isLoading} = useChat({onError: (e) => console.log(e), onFinish: (e) => console.log('doe')});
 
   const assistantMessages = messages.filter(m =>  m.role == "assistant")
 
 
+  useEffect(() => {
+    if (isLoading) return
+    if (query) append({id: "asdfasf", content: query, role: "user"})
+  }, [query])
 
   let recommendations: any = []
 
@@ -49,4 +53,3 @@ const App = () => {
   );
 };
 
-export default App;
