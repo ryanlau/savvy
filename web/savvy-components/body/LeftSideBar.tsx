@@ -1,4 +1,6 @@
-'use client'
+"use client";
+import { useSearchParams } from "next/navigation";
+import { Separator } from "@/components/ui/separator";
 
 // import React, { useState } from 'react';
 // import { Transition } from '@headlessui/react';
@@ -48,10 +50,40 @@
 // };
 
 export default function LeftSidebar() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q");
   return (
     // <div className="w-[350px] max-w-[350px] bg-gray-100 flex shrink-0 justify-center items-center">
-    <div className="w-[350px] max-w-[350px] bg-white text-white flex shrink-0 justify-center items-center">
-      <p>Your shopping trips will be saved here</p>
+    <div className="w-[350px] max-w-[350px] bg-gray-100">
+      <div className="p-5">
+        <h1 className="text-2xl mb-5">History</h1>
+        <div className="flex flex-col space-y-3">
+        <div>
+          <div>{query}</div>
+          <Separator className="bg-black" />
+        </div>
+        <div>
+          <div>sleeping bags</div>
+          <Separator className="bg-gray-300"/>
+        </div>
+        <div>
+          <div>headphones for kids</div>
+          <Separator className="bg-gray-300"/>
+        </div>
+        <div>
+          <div>
+            I'm really wondering what's the best soda. It has to be green though
+          </div>
+          <Separator className="bg-gray-300"/>
+        </div>
+        <div>
+          <div>Water jugs that come with a filter</div>
+          <Separator className="bg-gray-300"/>
+        </div>
+
+        </div>
+        
+      </div>
     </div>
   );
 }
