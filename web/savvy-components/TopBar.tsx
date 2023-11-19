@@ -35,14 +35,17 @@ export function TopBar() {
   return (
     <div className="flex bg-gray-900 py-6">
 
-    <div className="w-[350px] pl-20">
+    <div className="w-[350px]">
+      <div className="flex justify-center">
+          <Image
+          src="/savvywhite.png"
+          width={120}
+          height={40}
+          alt="Logo"
+        />
+      </div>
 
-    <Image
-      src="/savvywhite.png"
-      width={120}
-      height={40}
-      alt="Logo"
-    />
+    
     </div>
     
     <Form {...form}>
