@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 interface RecommendationsProps {
   recommendations: any[];
@@ -21,6 +22,7 @@ interface ProductProps {
   comment: string;
   isTopProduct: boolean;
   thumbnail: string;
+  id: number;
 }
 
 const Product: React.FC<ProductProps> = ({
@@ -29,7 +31,8 @@ const Product: React.FC<ProductProps> = ({
   comment,
   isTopProduct,
   thumbnail,
-  rating
+  rating,
+  id
 }) => {
   return (
     <div
@@ -87,7 +90,9 @@ const Product: React.FC<ProductProps> = ({
                 ))}
             </div>
             <div>
+              <Link href={`walmart.com/ip/~/${id}`}>
               <Button className="bg-[#ffc11f]">Purchase</Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -127,6 +132,7 @@ export default function Recommendations(props: RecommendationsProps) {
                 comment={product.explanation}
                 isTopProduct={index === 0} // Only the first product is the top product
                 thumbnail={product.img}
+                id={product.id}
               />
             </AccordionContent>
           </AccordionItem>

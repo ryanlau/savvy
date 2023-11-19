@@ -7,6 +7,7 @@ type Product = {
   description: string
   price: number
   img: string
+  id: number
 }
  
 export async function GET(request: NextRequest) {
@@ -40,6 +41,7 @@ export async function GET(request: NextRequest) {
       description: item.shortDescription,
       price: item.salePrice,
       img: item.largeImage,
+      id: item.itemId
     })
   })
 
